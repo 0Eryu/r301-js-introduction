@@ -1,4 +1,4 @@
-import { add, addToAll, average, sub, sum } from "../src/introduction";
+import { add, addToAll, average, isAdult, isChild, sub, sum } from "../src/introduction";
 
 test("add 1 to 2 equals 3", () => {
   expect(add(1, 2)).toBe(3);
@@ -33,5 +33,27 @@ describe("average", () => {
   });
   test("average of -1, 2 and 5 equals 2", () => {
     expect(average([-1, 2, 5])).toBe(2);
+  });
+});
+
+describe("user", () => {
+  let child;
+  let adult;
+  beforeEach(() => {
+    child = { age: 12 };
+    adult = { age: 22 };
+  });
+
+  test("Child user is not an adult", () => {
+    expect(isAdult(child)).toBe(false);
+  });
+  test("Child user is a child", () => {
+    expect(isChild(child)).toBe(true);
+  });
+  test("Adult user is an adult", () => {
+    expect(isAdult(adult)).toBe(true);
+  });
+  test("Adult user is not a child", () => {
+    expect(isChild(adult)).toBe(false);
   });
 });
