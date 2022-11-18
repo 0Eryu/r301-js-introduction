@@ -19,3 +19,10 @@ export function addToAll(values, toAdd) {
   const map = values.map(value => value + toAdd);
   return map;
 }
+
+export function average(values) {
+  if (values.length === 0) {
+    return null;
+  }
+  return sum(values) / values.length;
+}
