@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npx jest",
     "lint": "npx eslint src tests",
-    "fix": "npx eslint src tests --fix"
+    "fix": "npx eslint src tests --fix",
+    "build": "npx webpack"
   },
   "keywords": [],
   "author": "",
