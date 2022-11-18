@@ -61,3 +61,7 @@ export function adultFilter(users, type) {
   }
   return returnArray;
 }
+
+export function ageAverage(users, type) {
+  return average(extractAge(adultFilter(users, type)));
+}
