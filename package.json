@@ -9,7 +9,8 @@
     "fix": "npx eslint src tests --fix",
     "build": "npx webpack",
     "build:prod": "npx webpack --mode=production",
-    "build:watch": "npx webpack --watch"
+    "build:watch": "npx webpack --watch",
+    "start": "npx webpack serve"
   },
   "keywords": [],
   "author": "",
