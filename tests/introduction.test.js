@@ -1,5 +1,5 @@
 import {
-  add,
+  add, addIsAdultProperty,
   addToAll,
   adultFilter,
   ageAverage,
@@ -144,6 +144,29 @@ describe("users", () => {
         { age: 32, name: "Kelly" },
       ];
       expect(hasChild(adults)).toBe(false);
+    });
+  });
+
+  describe("addIsAdultProperty", () => {
+    beforeEach(() => {
+      users = [
+        { age: 12, name: "Bob" },
+        { age: 21, name: "Jim" },
+      ];
+    });
+
+    test("an isAdult property is added with correct value", () => {
+      expect(addIsAdultProperty(users)).toEqual([
+        { age: 12, name: "Bob", isAdult: false },
+        { age: 21, name: "Jim", isAdult: true },
+      ]);
+    });
+    test("the returned array is a new array", () => {
+      expect(addIsAdultProperty(users)).not.toBe(users);
+    });
+    test("the returned array contains new objects", () => {
+      expect(addIsAdultProperty(users)[0]).not.toBe(users[0]);
+      expect(addIsAdultProperty(users)[1]).not.toBe(users[1]);
     });
   });
 
