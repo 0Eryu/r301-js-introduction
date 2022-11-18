@@ -14,3 +14,8 @@ export function sum(values) {
   }
   return arraySum;
 }
+
+export function addToAll(values, toAdd) {
+  const map = values.map(value => value + toAdd);
+  return map;
+}
