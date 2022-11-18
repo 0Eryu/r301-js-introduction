@@ -49,3 +49,15 @@ export function extractAge(users) {
   }
   return ageArray;
 }
+
+export function adultFilter(users, type) {
+  let returnArray = [];
+  if (type === "adult") {
+    returnArray = users.filter(user => user.age >= 18);
+  } else if (type === "child") {
+    returnArray = users.filter(user => user.age < 18);
+  } else {
+    return users;
+  }
+  return returnArray;
+}
