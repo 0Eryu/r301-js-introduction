@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest"
+    "test": "npx jest",
+    "lint": "npx eslint src tests",
+    "fix": "npx eslint src tests --fix"
   },
   "keywords": [],
   "author": "",
