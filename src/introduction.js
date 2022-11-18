@@ -73,3 +73,12 @@ export function isAllAdult(users) {
 export function hasChild(users) {
   return !isAllAdult(users);
 }
+
+export function addIsAdultProperty(users) {
+  const usersCopy = [];
+  // eslint-disable-next-line no-restricted-syntax
+  for (const user of users) {
+    usersCopy.push({ ...user, isAdult: isAdult(user) });
+  }
+  return usersCopy;
+}
