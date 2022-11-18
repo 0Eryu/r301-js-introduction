@@ -40,3 +40,12 @@ export function isChild(user) {
   }
   return false;
 }
+
+export function extractAge(users) {
+  const ageArray = [];
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < users.length; i++) {
+    ageArray.push(users[i].age);
+  }
+  return ageArray;
+}
