@@ -9,7 +9,13 @@ export function createHtmlUser(age) {
 
 export function setAddUserEltCallback(addUserElt, usersElt) {
   addUserElt.addEventListener('click', () => {
-    const age = Math.floor(Math.random() * 42);
+    const age = Math.floor(Math.random() * (32 - 12 + 1) + 12);
     usersElt.appendChild(createHtmlUser(age))
   });
+}
+
+export function extractUser(userElt) {
+  const name = userElt.getElementsByClassName('user__name')[0].value;
+  const age = userElt.getElementsByClassName('user__age ')[0].value;
+  return {name, age: parseInt(age, 10)};
 }
