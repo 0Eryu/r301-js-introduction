@@ -4,8 +4,8 @@ import {
   adultFilter,
   ageAverage,
   average,
-  extractAge,
-  isAdult,
+  extractAge, hasChild,
+  isAdult, isAllAdult,
   isChild,
   sub,
   sum,
@@ -118,6 +118,32 @@ describe("users", () => {
     });
     test("age average off all users is 24", () => {
       expect(ageAverage(users, "adult")).toBe(24);
+    });
+  });
+
+  describe("isAllAdult", () => {
+    test("users array with a child is not all adult", () => {
+      expect(isAllAdult(users)).toBe(false);
+    });
+    test("users array with only adult is all adult", () => {
+      const adults = [
+        { age: 19, name: "Alice" },
+        { age: 32, name: "Kelly" },
+      ];
+      expect(isAllAdult(adults)).toBe(true);
+    });
+  });
+
+  describe("hasChild", () => {
+    test("users array with a child has child", () => {
+      expect(hasChild(users)).toBe(true);
+    });
+    test("users array with only adults has no child", () => {
+      const adults = [
+        { age: 19, name: "Alice" },
+        { age: 32, name: "Kelly" },
+      ];
+      expect(hasChild(adults)).toBe(false);
     });
   });
 
