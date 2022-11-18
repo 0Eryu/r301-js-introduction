@@ -1,4 +1,4 @@
-import { add, addToAll, sub, sum } from "../src/introduction";
+import { add, addToAll, average, sub, sum } from "../src/introduction";
 
 test("add 1 to 2 equals 3", () => {
   expect(add(1, 2)).toBe(3);
@@ -24,5 +24,14 @@ describe("addToAll", () => {
   test("return a new array", () => {
     const values = [1, 2];
     expect(addToAll(values)).not.toBe(values);
+  });
+});
+
+describe("average", () => {
+  test("average of an empty array equals null", () => {
+    expect(average([])).toBe(null);
+  });
+  test("average of -1, 2 and 5 equals 2", () => {
+    expect(average([-1, 2, 5])).toBe(2);
   });
 });
