@@ -13,4 +13,6 @@ Utiliser la commande console `npm install` pour installer les modules du fichier
 
 Toutes les commandes ci-dessous doivent être utilisée avec le prefix `npm`.
 
-- `test` : Permet de lancer les tests du paquet npx.
+- `test` : Permet de lancer les tests.
+- `lint` : Utilise le paquet eslint pour formatter le code.
+- `fix` : Utilise le paquet eslint pour fixer le code.
