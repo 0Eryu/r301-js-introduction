@@ -1,4 +1,15 @@
-import { add, addToAll, adultFilter, average, extractAge, isAdult, isChild, sub, sum } from "../src/introduction";
+import {
+  add,
+  addToAll,
+  adultFilter,
+  ageAverage,
+  average,
+  extractAge,
+  isAdult,
+  isChild,
+  sub,
+  sum,
+} from "../src/introduction";
 
 test("add 1 to 2 equals 3", () => {
   expect(add(1, 2)).toBe(3);
@@ -97,4 +108,17 @@ describe("users", () => {
       ]);
     });
   });
+
+  describe("ageAverage", () => {
+    test("age average off all users is 20", () => {
+      expect(ageAverage(users)).toBe(20);
+    });
+    test("age average off all users is 14", () => {
+      expect(ageAverage(users, "child")).toBe(14);
+    });
+    test("age average off all users is 24", () => {
+      expect(ageAverage(users, "adult")).toBe(24);
+    });
+  });
+
 });
