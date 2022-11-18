@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { createHtmlUser } from "../src/users-ui";
+import { createHtmlUser, setAddUserEltCallback } from "../src/users-ui";
 
 describe("createHtmlUser", () => {
   test("return an HTMLElement", () => {
@@ -14,6 +14,17 @@ describe("createHtmlUser", () => {
 
   test("returned element must have a CSS class 'user'", () => {
     expect(createHtmlUser(12).classList.contains("user")).toBe(true);
+  });
+});
+
+describe("setAddUserEltCallback", () => {
+  test("2 clicks must create 2 user items in HTML users container", () => {
+    const usersElt = document.createElement("div");
+    const addUserElt = document.createElement("button");
+    setAddUserEltCallback(addUserElt, usersElt);
+    addUserElt.click();
+    addUserElt.click();
+    expect(usersElt.querySelectorAll("li.user").length).toBe(2);
   });
 });
 
