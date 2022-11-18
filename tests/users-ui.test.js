@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { createHtmlUser, extractUser, setAddUserEltCallback } from "../src/users-ui";
+import { createHtmlUser, extractUser, extractUsers, setAddUserEltCallback } from "../src/users-ui";
 
 describe("createHtmlUser", () => {
   test("return an HTMLElement", () => {
@@ -64,5 +64,19 @@ describe("extractUser", () => {
     const usersElts = document.querySelectorAll("li.user");
     expect(extractUser(usersElts[0])).toEqual({ name: "Bob", age: 42 });
     expect(extractUser(usersElts[1])).toEqual({ name: "Jim", age: 24 });
+  });
+});
+
+describe("extractUsers", () => {
+  test("return an array of user objects from the users HTML container (ul.users)", () => {
+    document.body.innerHTML = `<ul class="users">
+      <li class="user"><input class="input user__name" value="Bob" /> - <input class="input user__age" type="number" value="42" /><button type="button" class="button user__delete"><span class="material-symbols-outlined">delete</span></button>
+      <li class="user"><input class="input user__name" value="Jim" /> - <input class="input user__age" type="number" value="24" /><button type="button" class="button user__delete"><span class="material-symbols-outlined">delete</span></button>
+    </ul>`;
+    const usersElt = document.querySelector("ul.users");
+    expect(extractUsers(usersElt)).toEqual([
+      { name: "Bob", age: 42 },
+      { name: "Jim", age: 24 },
+    ]);
   });
 });
