@@ -5,3 +5,12 @@ export function add(a, b) {
 export function sub(a, b) {
   return b - a;
 }
+
+export function sum(values) {
+  let arraySum = 0;
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < values.length; i++) {
+    arraySum += values[i];
+  }
+  return arraySum;
+}
