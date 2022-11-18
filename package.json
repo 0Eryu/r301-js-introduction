@@ -8,7 +8,9 @@
     "lint": "npx eslint src tests",
     "fix": "npx eslint src tests --fix",
     "build": "npx webpack",
-    "build:prof": "npx webpack --mode=production"
+    "build:prod": "npx webpack --mode=production",
+    "build:watch": "npx webpack --watch"
+
   },
   "keywords": [],
   "author": "",
