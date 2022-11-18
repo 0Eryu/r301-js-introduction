@@ -7,7 +7,8 @@
     "test": "npx jest",
     "lint": "npx eslint src tests",
     "fix": "npx eslint src tests --fix",
-    "build": "npx webpack"
+    "build": "npx webpack",
+    "build:prof": "npx webpack --mode=production"
   },
   "keywords": [],
   "author": "",
