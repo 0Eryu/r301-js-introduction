@@ -26,3 +26,17 @@ export function average(values) {
   }
   return sum(values) / values.length;
 }
+
+export function isAdult(user) {
+  if (user.age >= 18) {
+    return true
+  }
+  return false;
+}
+
+export function isChild(user) {
+  if (user.age < 18) {
+    return true
+  }
+  return false;
+}
