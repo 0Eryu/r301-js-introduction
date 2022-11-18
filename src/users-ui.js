@@ -19,3 +19,13 @@ export function extractUser(userElt) {
   const age = userElt.getElementsByClassName('user__age ')[0].value;
   return {name, age: parseInt(age, 10)};
 }
+
+export function extractUsers(usersElt) {
+  const users = Array.from(usersElt.querySelectorAll('li.user'));
+  const returnUsers = [];
+  // eslint-disable-next-line no-restricted-syntax
+  for (const user of users) {
+    returnUsers.push(extractUser(user));
+  }
+  return returnUsers;
+}
