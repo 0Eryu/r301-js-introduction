@@ -1,4 +1,4 @@
-import { add, addToAll, average, isAdult, isChild, sub, sum } from "../src/introduction";
+import { add, addToAll, average, extractAge, isAdult, isChild, sub, sum } from "../src/introduction";
 
 test("add 1 to 2 equals 3", () => {
   expect(add(1, 2)).toBe(3);
@@ -55,5 +55,27 @@ describe("user", () => {
   });
   test("Adult user is not a child", () => {
     expect(isChild(adult)).toBe(false);
+  });
+});
+
+describe("users", () => {
+  let users;
+  beforeEach(() => {
+    users = [
+      { age: 19, name: "Alice" },
+      { age: 12, name: "Bob" },
+      { age: 21, name: "Jim" },
+      { age: 16, name: "John" },
+      { age: 32, name: "Kelly" },
+    ];
+  });
+
+  describe("extract age", () => {
+    test("Extract users age in a new array", () => {
+      expect(extractAge(users)).not.toBe(users);
+    });
+    test("Extract users age return an array of users' age", () => {
+      expect(extractAge(users)).toEqual([19, 12, 21, 16, 32]);
+    });
   });
 });
