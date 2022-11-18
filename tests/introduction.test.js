@@ -1,4 +1,4 @@
-import { add, addToAll, average, extractAge, isAdult, isChild, sub, sum } from "../src/introduction";
+import { add, addToAll, adultFilter, average, extractAge, isAdult, isChild, sub, sum } from "../src/introduction";
 
 test("add 1 to 2 equals 3", () => {
   expect(add(1, 2)).toBe(3);
@@ -76,6 +76,25 @@ describe("users", () => {
     });
     test("Extract users age return an array of users' age", () => {
       expect(extractAge(users)).toEqual([19, 12, 21, 16, 32]);
+    });
+  });
+
+  describe("adultFilter", () => {
+    test("filter without type return all data array", () => {
+      expect(adultFilter(users)).toEqual(users);
+    });
+    test('filter with "child" return child users', () => {
+      expect(adultFilter(users, "child")).toEqual([
+        { age: 12, name: "Bob" },
+        { age: 16, name: "John" },
+      ]);
+    });
+    test('filter with "adult" return adult users', () => {
+      expect(adultFilter(users, "adult")).toEqual([
+        { age: 19, name: "Alice" },
+        { age: 21, name: "Jim" },
+        { age: 32, name: "Kelly" },
+      ]);
     });
   });
 });
