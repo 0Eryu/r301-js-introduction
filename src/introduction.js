@@ -65,3 +65,11 @@ export function adultFilter(users, type) {
 export function ageAverage(users, type) {
   return average(extractAge(adultFilter(users, type)));
 }
+
+export function isAllAdult(users) {
+  return adultFilter(users, "adult").length === users.length;
+}
+
+export function hasChild(users) {
+  return !isAllAdult(users);
+}
