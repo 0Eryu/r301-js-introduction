@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { createHtmlUser, extractUser, extractUsers, setAddUserEltCallback } from "../src/users-ui";
+import { createHtmlUser, extractUser, extractUsers, extractUserType, setAddUserEltCallback } from "../src/users-ui";
 
 describe("createHtmlUser", () => {
   test("return an HTMLElement", () => {
@@ -78,5 +78,27 @@ describe("extractUsers", () => {
       { name: "Bob", age: 42 },
       { name: "Jim", age: 24 },
     ]);
+  });
+});
+
+describe("extractUserType", () => {
+  beforeEach(() => {
+    document.body.innerHTML = `<article class="info">
+        <form class="info__age-average-type">
+          <label><input type="radio" name="type" value="" checked />all</label>
+          <label><input type="radio" name="type" value="adult" />adult</label>
+          <label><input type="radio" name="type" value="child" />child</label>
+        </form>
+        </article>
+      `;
+  });
+  test("return an empty string by default", () => {
+    const infoElt = document.querySelector(".info");
+    expect(extractUserType(infoElt)).toBe("");
+  });
+  test("return 'child' when the child radio button was clicked", () => {
+    const infoElt = document.querySelector(".info");
+    infoElt.querySelector("input[type='radio'][value='child']").click();
+    expect(extractUserType(infoElt)).toBe("child");
   });
 });
