@@ -29,3 +29,15 @@ export function extractUsers(usersElt) {
   }
   return returnUsers;
 }
+
+export function extractUserType(infoElt) {
+  const infos = Array.from(infoElt.querySelectorAll('input'));
+  let returnValue;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const info of infos) {
+    if (info.checked) {
+      returnValue = info.value;
+    }
+  }
+  return returnValue;
+}
