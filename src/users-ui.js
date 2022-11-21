@@ -45,15 +45,11 @@ export function extractUserType(infoElt) {
 }
 
 export function updateAgeAverage(usersElt, infoElt) {
-  const users = extractUsers(usersElt);
-  const userType = extractUserType(infoElt);
-  const average = ageAverage(users, userType);
-  const truc = infoElt.querySelector('span.info__age-average');
-
+  const average = ageAverage(extractUsers(usersElt),  extractUserType(infoElt));
+  const HTMLElt = infoElt.querySelector('span.info__age-average');
+  HTMLElt.innerText = "";
   if (average !== null) {
-    truc.innerText = parseFloat(average).toFixed(2);
-  } else {
-    truc.innerText = "";
+    HTMLElt.innerText = parseFloat(average).toFixed(2);
   }
 
 }
