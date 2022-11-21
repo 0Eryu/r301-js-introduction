@@ -1,3 +1,5 @@
+import { ageAverage } from "./introduction";
+
 export function createHtmlUser(age) {
   const li = document.createElement("li");
   li.className = "user";
@@ -31,7 +33,7 @@ export function extractUsers(usersElt) {
 }
 
 export function extractUserType(infoElt) {
-  const infos = Array.from(infoElt.querySelectorAll('input'));
+  const infos = Array.from(infoElt.querySelectorAll('input[type="radio"]'));
   let returnValue;
   // eslint-disable-next-line no-restricted-syntax
   for (const info of infos) {
@@ -40,4 +42,18 @@ export function extractUserType(infoElt) {
     }
   }
   return returnValue;
+}
+
+export function updateAgeAverage(usersElt, infoElt) {
+  const users = extractUsers(usersElt);
+  const userType = extractUserType(infoElt);
+  const average = ageAverage(users, userType);
+  const truc = infoElt.querySelector('span.info__age-average');
+
+  if (average !== null) {
+    truc.innerText = parseFloat(average).toFixed(2);
+  } else {
+    truc.innerText = "";
+  }
+
 }
