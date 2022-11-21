@@ -1,7 +1,14 @@
 /**
  * @jest-environment jsdom
  */
-import { createHtmlUser, extractUser, extractUsers, extractUserType, setAddUserEltCallback } from "../src/users-ui";
+import {
+  createHtmlUser,
+  extractUser,
+  extractUsers,
+  extractUserType,
+  setAddUserEltCallback,
+  updateAgeAverage,
+} from "../src/users-ui";
 
 describe("createHtmlUser", () => {
   test("return an HTMLElement", () => {
@@ -100,5 +107,44 @@ describe("extractUserType", () => {
     const infoElt = document.querySelector(".info");
     infoElt.querySelector("input[type='radio'][value='child']").click();
     expect(extractUserType(infoElt)).toBe("child");
+  });
+});
+
+describe("updateAgeAverage", () => {
+  let usersElt;
+  let infoElt;
+  let ageAverageElt;
+  beforeEach(() => {
+    document.body.innerHTML = `
+        <article class="info">
+          <form class="info__age-average-type">
+            <label><input type="radio" name="type" value="" checked />all</label>
+            <label><input type="radio" name="type" value="adult" />adult</label>
+            <label><input type="radio" name="type" value="child" />child</label>
+          </form>
+          <div class="info__user"><span class="info__age-average"><div>
+        </article>
+        <ul class="users">
+          <li class="user"><input class="input user__name" value="Bob" /> - <input class="input user__age" type="number" value="42" /><button type="button" class="button user__delete"><span class="material-symbols-outlined">delete</span></button>
+          <li class="user"><input class="input user__name" value="Jim" /> - <input class="input user__age" type="number" value="24" /><button type="button" class="button user__delete"><span class="material-symbols-outlined">delete</span></button>
+        </ul>
+      `;
+    usersElt = document.querySelector("ul.users");
+    infoElt = document.querySelector("article.info");
+    ageAverageElt = infoElt.querySelector(".info__age-average");
+  });
+  test("age average element must be '33.00'", () => {
+    updateAgeAverage(usersElt, infoElt);
+    expect(ageAverageElt.innerText).toBe("33.00");
+  });
+  test("when child radio was clicked age average element must be an empty string", () => {
+    infoElt.querySelector("input[value='child']").click();
+    updateAgeAverage(usersElt, infoElt);
+    expect(ageAverageElt.innerText).toBe("");
+  });
+  test("when adult radio was clicked age average element must be '33.00", () => {
+    infoElt.querySelector("input[value='adult']").click();
+    updateAgeAverage(usersElt, infoElt);
+    expect(ageAverageElt.innerText).toBe("33.00");
   });
 });
