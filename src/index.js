@@ -1,3 +1,5 @@
-import { add } from "./introduction";
+import { setAddUserEltCallback } from "./users-ui";
 
-console.log("1 + 2 = ", add(1, 2));
+const addUserElt = document.querySelector("button.user-data__add");
+const userElt = document.querySelector("ul.users");
+const age = setAddUserEltCallback(addUserElt, userElt);

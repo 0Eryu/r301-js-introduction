@@ -13,6 +13,8 @@ export function setAddUserEltCallback(addUserElt, usersElt) {
   addUserElt.addEventListener('click', () => {
     const age = Math.floor(Math.random() * (32 - 12 + 1) + 12);
     usersElt.appendChild(createHtmlUser(age))
+    // eslint-disable-next-line no-use-before-define
+    updateAgeAverage(usersElt, document.querySelector("article.info"));
   });
 }
 
