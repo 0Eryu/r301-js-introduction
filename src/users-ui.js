@@ -5,8 +5,7 @@ export function createHtmlUser(age) {
   li.className = "user";
   li.innerHTML += "<input type='text' value='Name' class='input user__name'>";
   li.innerHTML += `<input type='number' value='${age}' class='input user__age'>`;
-  li.innerHTML +=
-    "<input type='button' value='delete' class='input user__delete'>";
+  li.innerHTML += '<button value="delete" class="input user__delete">delete</button>';
   return li;
 }
 
@@ -66,6 +65,7 @@ export function updateAgeAverage(usersElt, infoElt) {
 export function setUserEltCallbacks(userElt, usersElt, infoElt) {
   const deleteButton = userElt.querySelector('.user__delete');
   deleteButton.addEventListener('click', () => {
+    console.log('ici')
     userElt.remove();
     updateAgeAverage(usersElt, infoElt);
   });
