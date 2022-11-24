@@ -1,5 +1,11 @@
 import { adultFilter, ageAverage } from "./introduction";
 
+/**
+ * Crée un utilisateur HTML.
+ *
+ * @param age {int} âge de l'utilisateur.
+ * @returns {HTMLLIElement} élément HTML représentant l'utilisateur.
+ */
 export function createHtmlUser(age) {
   const li = document.createElement("li");
   li.className = "user";
@@ -9,6 +15,13 @@ export function createHtmlUser(age) {
   return li;
 }
 
+/**
+ * Ajoute un utilisateur à la liste des utilisateurs.
+ *
+ * @param addUserElt {HTMLButtonElement} bouton d'ajout d'utilisateur.
+ * @param usersElt {HTMLUListElement} liste des utilisateurs.
+ * @param infoElt {HTMLDivElement} div d'information.
+ */
 export function setAddUserEltCallback(addUserElt, usersElt, infoElt) {
   // eslint-disable-next-line no-param-reassign
   infoElt = infoElt || null;
@@ -25,12 +38,24 @@ export function setAddUserEltCallback(addUserElt, usersElt, infoElt) {
   });
 }
 
+/**
+ * Extrait les informations d'un utilisateur.
+ *
+ * @param userElt {HTMLLIElement} élément HTML représentant l'utilisateur.
+ * @returns {{name: *, age: number}} informations de l'utilisateur.
+ */
 export function extractUser(userElt) {
   const name = userElt.getElementsByClassName("user__name")[0].value;
   const age = userElt.getElementsByClassName("user__age ")[0].value;
   return { name, age: parseInt(age, 10) };
 }
 
+/**
+ * Extrait les utilisateurs d'une liste d'utilisateurs.
+ *
+ * @param usersElt {HTMLUListElement} liste des utilisateurs.
+ * @returns {*[]} liste des utilisateurs.
+ */
 export function extractUsers(usersElt) {
   const users = Array.from(usersElt.querySelectorAll("li.user"));
   const returnUsers = [];
@@ -41,6 +66,12 @@ export function extractUsers(usersElt) {
   return returnUsers;
 }
 
+/**
+ * Extrait le type d'utilisateur sélectionné dans un radio.
+ *
+ * @param infoElt {HTMLDivElement} div d'information.
+ * @returns {*} type d'utilisateur sélectionné.
+ */
 export function extractUserType(infoElt) {
   const infos = Array.from(infoElt.querySelectorAll('input[type="radio"]'));
   let returnValue;
@@ -53,6 +84,12 @@ export function extractUserType(infoElt) {
   return returnValue;
 }
 
+/**
+ * Met à jour l'âge moyen.
+ *
+ * @param usersElt {HTMLUListElement} liste des utilisateurs.
+ * @param infoElt {HTMLDivElement} div d'information.
+ */
 export function updateAgeAverage(usersElt, infoElt) {
   const average = ageAverage(extractUsers(usersElt), extractUserType(infoElt));
   const HTMLElt = infoElt.querySelector("span.info__age-average");
@@ -62,6 +99,13 @@ export function updateAgeAverage(usersElt, infoElt) {
   }
 }
 
+/**
+ * Permet la suppression ou la modification d'un utilisateur tout en mettant à jour l'âge moyen.
+ *
+ * @param userElt {HTMLLIElement} élément HTML représentant l'utilisateur.
+ * @param usersElt {HTMLUListElement} liste des utilisateurs.
+ * @param infoElt {HTMLDivElement} div d'information.
+ */
 export function setUserEltCallbacks(userElt, usersElt, infoElt) {
   const deleteButton = userElt.querySelector('.user__delete');
   deleteButton.addEventListener('click', () => {
@@ -79,6 +123,12 @@ export function setUserEltCallbacks(userElt, usersElt, infoElt) {
   });
 }
 
+/**
+ * Modifie l'âge moyen en fonction du type d'utilisateurs choisi dans le radio.
+ *
+ * @param usersElt {HTMLUListElement} liste des utilisateurs.
+ * @param infoElt {HTMLDivElement} div d'information.
+ */
 export function setAgeTypeEltEvents(usersElt, infoElt)
 {
   const form = infoElt.querySelector('.info__age-average-type');
@@ -88,6 +138,11 @@ export function setAgeTypeEltEvents(usersElt, infoElt)
   });
 }
 
+/**
+ * Met à jour le style css d'un utilisateur si celui-ci est mineur.
+ *
+ * @param userElt {HTMLLIElement} élément HTML représentant l'utilisateur.
+ */
 export function updateUserClassName(userElt) {
   const age = userElt.querySelector('.user__age').value;
   if (age < 18) {

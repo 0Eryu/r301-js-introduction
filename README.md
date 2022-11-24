@@ -3,6 +3,12 @@
 ## Auteur(s)
 - PLUCHART Evan
 
+## Description du projet
+
+Ce projet a pour but de découvrir les bases du langage JavaScript.
+Pour ce faire, nous allons réaliser un système de gestion d'utilisateurs, celà nous permettra d'ajouter, de modifier et de supprimer un utilisateur.
+Chaque utilisateurs possède un âge et un type (adult ou child) en fonction de son âge ce qui permettra de faire la moyenne des âges des adultes, des enfants ainsi que la moyenne d'âge totale.
+
 ## Installation / Configuration
 
 ### Installation par `npm`
