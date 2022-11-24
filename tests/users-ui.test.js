@@ -214,4 +214,18 @@ describe("setUserEltCallbacks", () => {
       parseFloat(ageAverage(users)).toFixed(2),
     );
   });
+
+  test("change user age must update age average", () => {
+    users[1].age += 2;
+    const userElt = usersElt.querySelector(
+      "li.user:nth-child(2) input.user__age",
+    );
+    userElt.value = parseInt(userElt.value, 10) + 2;
+    userElt.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(extractUsers(usersElt)).toEqual(users);
+    expect(infoElt.querySelector(".info__age-average").innerText).toBe(
+      parseFloat(ageAverage(users)).toFixed(2),
+    );
+  });
 });
+

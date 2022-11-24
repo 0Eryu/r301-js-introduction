@@ -1,4 +1,4 @@
-import { ageAverage } from "./introduction";
+import { adultFilter, ageAverage } from "./introduction";
 
 export function createHtmlUser(age) {
   const li = document.createElement("li");
@@ -72,5 +72,14 @@ export function setUserEltCallbacks(userElt, usersElt, infoElt) {
   const updateButton = userElt.querySelector('.user__age');
   updateButton.addEventListener('change', () => {
     updateAgeAverage(usersElt, infoElt);
+  });
+}
+
+export function setAgeTypeEltEvents(usersElt, infoElt)
+{
+  const form = infoElt.querySelector('.info__age-average-type');
+  form.addEventListener('click', () => {
+    const adultUsers = adultFilter(usersElt);
+    updateAgeAverage(adultUsers, infoElt);
   });
 }
