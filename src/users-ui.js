@@ -83,3 +83,12 @@ export function setAgeTypeEltEvents(usersElt, infoElt)
     updateAgeAverage(adultUsers, infoElt);
   });
 }
+
+export function updateUserClassName(userElt) {
+  const age = userElt.querySelector('.user__age').value;
+  if (age < 18) {
+    userElt.classList.add('user--child');
+  } else {
+    userElt.classList.remove('user--child');
+  }
+}
