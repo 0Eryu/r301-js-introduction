@@ -65,8 +65,12 @@ export function updateAgeAverage(usersElt, infoElt) {
 export function setUserEltCallbacks(userElt, usersElt, infoElt) {
   const deleteButton = userElt.querySelector('.user__delete');
   deleteButton.addEventListener('click', () => {
-    console.log('ici')
     userElt.remove();
+    updateAgeAverage(usersElt, infoElt);
+  });
+
+  const updateButton = userElt.querySelector('.user__age');
+  updateButton.addEventListener('change', () => {
     updateAgeAverage(usersElt, infoElt);
   });
 }
