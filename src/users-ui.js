@@ -13,12 +13,15 @@ export function createHtmlUser(age) {
 export function setAddUserEltCallback(addUserElt, usersElt, infoElt) {
   // eslint-disable-next-line no-param-reassign
   infoElt = infoElt || null;
-  addUserElt.addEventListener("click", () => {
+  addUserElt.addEventListener('click', () => {
     const age = Math.floor(Math.random() * (32 - 12 + 1) + 12);
-    usersElt.appendChild(createHtmlUser(age));
+    const userElt = createHtmlUser(age);
+    usersElt.appendChild(userElt);
     if (infoElt !== null) {
       // eslint-disable-next-line no-use-before-define
       updateAgeAverage(usersElt, infoElt);
+      // eslint-disable-next-line no-use-before-define
+      setUserEltCallbacks(userElt, usersElt, infoElt);
     }
   });
 }
@@ -58,4 +61,12 @@ export function updateAgeAverage(usersElt, infoElt) {
   if (average !== null) {
     HTMLElt.innerText = parseFloat(average).toFixed(2);
   }
+}
+
+export function setUserEltCallbacks(userElt, usersElt, infoElt) {
+  const deleteButton = userElt.querySelector('.user__delete');
+  deleteButton.addEventListener('click', () => {
+    userElt.remove();
+    updateAgeAverage(usersElt, infoElt);
+  });
 }

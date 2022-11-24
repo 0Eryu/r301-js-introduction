@@ -9,6 +9,7 @@ import {
   setAddUserEltCallback,
   updateAgeAverage,
 } from "../src/users-ui";
+import { ageAverage } from "../src/introduction";
 
 describe("createHtmlUser", () => {
   test("return an HTMLElement", () => {
@@ -146,5 +147,38 @@ describe("updateAgeAverage", () => {
     infoElt.querySelector("input[value='adult']").click();
     updateAgeAverage(usersElt, infoElt);
     expect(ageAverageElt.innerText).toBe("33.00");
+  });
+});
+
+describe("setUserEltCallbacks", () => {
+  let usersElt;
+  let addUserElt;
+  let infoElt;
+  let users;
+  beforeEach(() => {
+    usersElt = document.createElement("div");
+    addUserElt = document.createElement("button");
+    infoElt = document.createElement("div");
+    infoElt.innerHTML = `
+      <form class="info__age-average-type">
+        <label><input type="radio" name="type" value="" checked />all</label>
+        <label><input type="radio" name="type" value="adult" />adult</label>
+        <label><input type="radio" name="type" value="child" />child</label>
+      </form>
+      <span class="info__age-average">
+    `;
+    setAddUserEltCallback(addUserElt, usersElt, infoElt);
+    addUserElt.click();
+    addUserElt.click();
+    addUserElt.click();
+    users = extractUsers(usersElt);
+  });
+  test("click on delete user button must remove associated user HTML element", () => {
+    users.splice(1, 1);
+    usersElt.querySelector("li.user:nth-child(2) button.user__delete").click();
+    expect(extractUsers(usersElt)).toEqual(users);
+    expect(infoElt.querySelector(".info__age-average").innerText).toBe(
+      parseFloat(ageAverage(users)).toFixed(2),
+    );
   });
 });
