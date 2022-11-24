@@ -67,11 +67,15 @@ export function setUserEltCallbacks(userElt, usersElt, infoElt) {
   deleteButton.addEventListener('click', () => {
     userElt.remove();
     updateAgeAverage(usersElt, infoElt);
+    // eslint-disable-next-line no-use-before-define
+    updateUserClassName(userElt);
   });
 
   const updateButton = userElt.querySelector('.user__age');
   updateButton.addEventListener('change', () => {
     updateAgeAverage(usersElt, infoElt);
+    // eslint-disable-next-line no-use-before-define
+    updateUserClassName(userElt);
   });
 }
 
